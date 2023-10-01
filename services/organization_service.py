@@ -30,6 +30,6 @@ async def create_one_organization(organization: Customers) -> Customers:
     Returns:
         Customers: The created organization object
     """
-    await Customers.create(organization)
+    await organization.create()
 
     return organization
