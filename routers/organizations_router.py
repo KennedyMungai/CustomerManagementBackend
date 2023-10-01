@@ -27,7 +27,7 @@ async def get_all_organizations_endpoint(
     Returns:
         _type_: _description_
     """
-    return await get_all_organizations(skip=skip, limit=limit, search=search)
+    return await get_all_organizations(skip=skip, limit=limit)
 
 
 @organizations_router.post(
