@@ -1,6 +1,5 @@
 """The models file for the application"""
 from beanie import Document
-from pydantic import HttpUrl
 
 
 class Customers(Document):
@@ -12,7 +11,7 @@ class Customers(Document):
     Index: int
     OrganizationId: str
     Name: str
-    Website: HttpUrl
+    Website: str
     Country: str
     Description: str
     Founded: int
