@@ -1,11 +1,10 @@
 """The organizations router"""
 from typing import List, Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 
 from models.models import Customers
-from services.organization_service import (create_one_organization,
-                                           get_all_organizations)
+from services.organization_service import create_one_organization, get_all_organizations
 
 organizations_router = APIRouter(
     prefix="/organizations",
@@ -31,7 +30,11 @@ async def get_all_organizations_endpoint(
     return await get_all_organizations(skip=skip, limit=limit, search=search)
 
 
-@organizations_router.post("/")
+@organizations_router.post(
+    "/",
+    status_code=status.HTTP_201_CREATED,
+    response_model=Customers
+)
 async def create_one_organization_endpoint(organization: Customers) -> Customers:
     """The endpoint to create one organization
 
@@ -41,4 +44,8 @@ async def create_one_organization_endpoint(organization: Customers) -> Customers
     Returns:
         Customers: The created organization object
     """
-    return await create_one_organization(organization)
+    try:
+        await create_one_organization(organization)
+    except:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT,
+                            detail="Organization already exists")
