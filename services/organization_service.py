@@ -6,8 +6,7 @@ from models.models import Customers
 
 async def get_all_organizations(
     skip: Optional[int] = 0,
-    limit: Optional[int] = 0,
-    search: Optional[str] = ''
+    limit: Optional[int] = 0
 ) -> List[Customers]:
     """The function to retrieve all documents from db
 
@@ -19,7 +18,7 @@ async def get_all_organizations(
     Returns:
         List[Customers]: _description_
     """
-    return await Customers.find_all().filter(Customers.name.contains(search)).skip(skip).limit(limit).to_list()
+    return await Customers.find_all().skip(skip).limit(limit).to_list()
 
 
 async def create_one_organization(organization: Customers) -> Customers:
