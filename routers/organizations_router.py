@@ -10,7 +10,11 @@ organizations_router = APIRouter(
 
 
 @organizations_router.get("/")
-async def get_all_organizations_endpoint(skip: int = 0, limit: int = 10):
+async def get_all_organizations_endpoint(
+    skip: int = 0, 
+    limit: int = 10,
+    search: str = ""
+):
     """The endpoint to retrieve all organization data
 
     Args:
@@ -20,4 +24,4 @@ async def get_all_organizations_endpoint(skip: int = 0, limit: int = 10):
     Returns:
         _type_: _description_
     """
-    return await get_all_organizations(skip=skip, limit=limit)
+    return await get_all_organizations(skip=skip, limit=limit, search=search)
