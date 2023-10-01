@@ -4,7 +4,7 @@ from typing import List, Optional
 from models.models import Customers
 
 
-async def get_methods(
+async def get_all_organizations(
     skip: Optional[int] = 0,
     limit: Optional[int] = 0,
 ) -> List[Customers]:
