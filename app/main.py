@@ -1,6 +1,7 @@
 """The root file of the application"""
 from fastapi import FastAPI
 from database.db import init_db
+from routers.organizations_router import organizations_router
 
 
 app = FastAPI(
@@ -25,3 +26,6 @@ async def root() -> dict[str, str]:
         dict[str, str]: Returns a simple dictionary
     """
     return {"message": "Hello World"}
+
+
+app.include_router(organizations_router)
