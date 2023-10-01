@@ -19,4 +19,4 @@ async def get_all_organizations(
     Returns:
         List[Customers]: _description_
     """
-    return await Customers.find_all().filter(search).skip(skip).limit(limit).to_list()
+    return await Customers.find_all().filter(Customers.name.contains(search)).skip(skip).limit(limit).to_list()
