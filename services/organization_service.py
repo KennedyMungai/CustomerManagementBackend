@@ -20,3 +20,15 @@ async def get_all_organizations(
         List[Customers]: _description_
     """
     return await Customers.find_all().filter(Customers.name.contains(search)).skip(skip).limit(limit).to_list()
+
+
+async def create_one_organization(organization: Customers) -> Customers:
+    """The function to create one document in db
+
+    Args:
+        organization (Customers): The organization object
+
+    Returns:
+        Customers: The created organization object
+    """
+    return await organization.create()
