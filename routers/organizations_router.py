@@ -4,7 +4,8 @@ from typing import List, Optional
 from fastapi import APIRouter, HTTPException
 
 from models.models import Customers
-from services.organization_service import get_all_organizations
+from services.organization_service import (create_one_organization,
+                                           get_all_organizations)
 
 organizations_router = APIRouter(
     prefix="/organizations",
@@ -28,3 +29,16 @@ async def get_all_organizations_endpoint(
         _type_: _description_
     """
     return await get_all_organizations(skip=skip, limit=limit, search=search)
+
+
+@organizations_router.post("/")
+async def create_one_organization_endpoint(organization: Customers) -> Customers:
+    """The endpoint to create one organization
+
+    Args:
+        organization (Customers): The organization object
+
+    Returns:
+        Customers: The created organization object
+    """
+    return await create_one_organization(organization)
