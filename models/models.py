@@ -1,5 +1,5 @@
 """The models file for the application"""
-from beanie import Document, PydanticObjectId
+from beanie import Document
 from pydantic import HttpUrl
 
 
@@ -9,10 +9,10 @@ class Customers(Document):
     Args:
         Document (The base class): The basis for all models
     """
-    index: int
-    OrganizationId: PydanticObjectId
-    name: str
-    website: HttpUrl
+    Index: int
+    OrganizationId: str
+    Name: str
+    Website: HttpUrl
     Country: str
     Description: str
     Founded: int
