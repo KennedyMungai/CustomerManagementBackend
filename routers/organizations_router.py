@@ -1,6 +1,9 @@
 """The organizations router"""
+from typing import List, Optional
+
 from fastapi import APIRouter, HTTPException
 
+from models.models import Customers
 from services.organization_service import get_all_organizations
 
 organizations_router = APIRouter(
@@ -11,10 +14,10 @@ organizations_router = APIRouter(
 
 @organizations_router.get("/")
 async def get_all_organizations_endpoint(
-    skip: int = 0, 
-    limit: int = 10,
-    search: str = ""
-):
+    skip: Optional[int] = 0,
+    limit: Optional[int] = 10,
+    search: Optional[str] = ""
+) -> List[Customers]:
     """The endpoint to retrieve all organization data
 
     Args:
