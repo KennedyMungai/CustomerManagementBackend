@@ -7,5 +7,5 @@ from models.models import Customers
 
 async def init_db():
     """The function which communicates with the database"""
-    client = AsyncIOMotorClient("https://localhost:27017")
+    client = AsyncIOMotorClient("mongodb://localhost:27017")
     await init_beanie(database=client.Organizations, document_models=[Customers])
